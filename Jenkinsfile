@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t scratch-app .
+                docker build --no-cache -t scratch-app .
                 '''
             }
         }
@@ -30,6 +30,9 @@ pipeline {
     post {
         success {
             echo 'Application deployed successfully on port 80'
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
