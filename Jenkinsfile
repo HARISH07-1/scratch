@@ -21,7 +21,7 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f scratch-container || true
-                docker run -d -p 80:80 --name scratch-container scratch-app
+                docker run -d -p 85:80 --name scratch-container scratch-app
                 '''
             }
         }
@@ -29,10 +29,7 @@ pipeline {
 
     post {
         success {
-            echo 'Application deployed successfully on port 80'
-        }
-        failure {
-            echo 'Pipeline failed'
+            echo 'Application deployed successfully on port 85'
         }
     }
 }
